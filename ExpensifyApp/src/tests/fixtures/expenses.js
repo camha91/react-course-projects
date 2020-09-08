@@ -5,7 +5,7 @@ export default [{
     description: 'Snack',
     note: '',
     amount: 899,
-    createdAt: moment(0)
+    createdAt: 0
 }, {
     id: '2',
     description: 'Rent',
