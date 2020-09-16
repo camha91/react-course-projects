@@ -29,18 +29,10 @@ database.ref().set({
     console.log('This failed,', e);
 });
 
-// database.ref().set('This is my data.');
-
-// database.ref('age').set(29);
-// database.ref('location/city').set('Austin');
-
-database.ref('attributes').set({
-    height: 152,
-    weight: 105
-}).then(() => {
-    console.log('Second set call worked.');
-}).catch((e) => {
-    console.log('Things didnt work for the second error', e);
-});
-
-console.log('I made a request to change the data.');
+// database.ref()
+//     .remove()
+//     .then(() => {
+//         console.log('Data was removed');
+//     }).catch((e) => {
+//         console.log('Did not remove data', e);
+//     });
