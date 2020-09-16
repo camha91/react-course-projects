@@ -15,32 +15,64 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().set({
-    name: 'Camha Nguyen',
-    age: 28,
-    stressLevel: 5,
-    job: {
-        title: 'Clinical Lab Technologist',
-        company: 'CCRM SF'
-    },
-    location: {
-        city: 'San Jose',
-        country: 'United States'
-    }
-}).then(() => {
-    console.log('Data is saved!');
-}).catch((e) => {
-    console.log('This failed,', e);
+database.ref().on('value', (snapshot) => {
+   const val = snapshot.val();
+    console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
 });
 
-database.ref().update({
-   stressLevel: 8,
-   job: {
-       title: 'Software developer',
-       company: 'Google'
-   },
-    'location/city': 'Mountain View'
-});
+// const onValueChange = database.ref().on('value', (snapshot) => {
+//     console.log(snapshot.val());
+// }, (e) => {
+//     console.log('Error with data fetching', e);
+// });
+//
+// setTimeout(() => {
+//     database.ref('age').set(29);
+// }, 3500);
+//
+// setTimeout(() => {
+//     database.ref().off(onValueChange);
+// }, 7000);
+//
+// setTimeout(() => {
+//     database.ref('age').set(30);
+// }, 10500);
+
+// database.ref().once('value')
+//     .then((snapshot) => {
+//         const val = snapshot.val();
+//         console.log(val);
+//     })
+//     .catch((e) => {
+//         console.log('Error fetching data', e);
+//     });
+
+// database.ref().set({
+//     name: 'Camha Nguyen',
+//     age: 28,
+//     stressLevel: 5,
+//     job: {
+//         title: 'Clinical Lab Technologist',
+//         company: 'CCRM SF'
+//     },
+//     location: {
+//         city: 'San Jose',
+//         country: 'United States'
+//     }
+// }).then(() => {
+//     console.log('Data is saved!');
+// }).catch((e) => {
+//     console.log('This failed,', e);
+// });
+//
+// database.ref().update({
+//    stressLevel: 8,
+//    job: {
+//        title: 'Software developer',
+//        company: 'Google'
+//    },
+//     'location/city': 'Mountain View'
+// });
 
 // database.ref()
 //     .remove()
