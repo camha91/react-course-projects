@@ -15,10 +15,68 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().on('value', (snapshot) => {
-   const val = snapshot.val();
-    console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
+// child_removed
+database.ref('expenses').on('child_removed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
 });
+
+// child_changed
+database.ref('expenses').on('child_changed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
+
+// child_added
+database.ref('expenses').on('child_added', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
+
+// database.ref('expenses')
+//     .once('value')
+//     .then((snapshot) => {
+//         const expenses = [];
+//
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key,
+//                 ...childSnapshot.val()
+//             });
+//         });
+//
+//         console.log(expenses);
+//     });
+
+// database.ref('expenses').on('value', (snapshot) => {
+//     const expenses = [];
+//
+//     snapshot.forEach((childSnapshot) => {
+//         expenses.push({
+//             id: childSnapshot.key,
+//             ...childSnapshot.val()
+//         });
+//     });
+//
+//     console.log(expenses);
+// });
+
+// database.ref('expenses').push({
+//     description: 'Food',
+//     note: '',
+//     amount: '15000',
+//     createdAt: 578942754375
+// });
+
+
+// database.ref('notes/-MHO5G3I2EZvkTiKQyRH').remove();
+
+// database.ref('notes').push({
+//     title: 'Course Topics',
+//     body: 'React Native, Angular, Python'
+// });
+
+// database.ref().on('value', (snapshot) => {
+//    const val = snapshot.val();
+//     console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
+// });
 
 // const onValueChange = database.ref().on('value', (snapshot) => {
 //     console.log(snapshot.val());
