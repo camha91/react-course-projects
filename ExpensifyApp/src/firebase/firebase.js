@@ -1,6 +1,4 @@
-// import * as firebase from 'firebase';
-import firebase from 'firebase/app';
-import 'firebase/database';
+import * as firebase from 'firebase';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAW8UsuyZimeD9nJD3pNYQUfE-Y1M0s4sI",
@@ -15,6 +13,26 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-firebase.database().ref().set({
-    name: 'Camha Nguyen'
+const database = firebase.database();
+
+database.ref().set({
+    name: 'Camha Nguyen',
+    age: 28,
+    isSingle: false,
+    location: {
+        city: 'San Jose',
+        country: 'United States'
+    }
 });
+
+// database.ref().set('This is my data.');
+
+database.ref('age').set(29);
+database.ref('location/city').set('Austin');
+
+database.ref('attributes').set({
+    height: 152,
+    weight: 105
+});
+
+console.log('I made a request to change the data.');
