@@ -18,7 +18,11 @@ const database = firebase.database();
 database.ref().set({
     name: 'Camha Nguyen',
     age: 28,
-    isSingle: false,
+    stressLevel: 5,
+    job: {
+        title: 'Clinical Lab Technologist',
+        company: 'CCRM SF'
+    },
     location: {
         city: 'San Jose',
         country: 'United States'
@@ -27,6 +31,15 @@ database.ref().set({
     console.log('Data is saved!');
 }).catch((e) => {
     console.log('This failed,', e);
+});
+
+database.ref().update({
+   stressLevel: 8,
+   job: {
+       title: 'Software developer',
+       company: 'Google'
+   },
+    'location/city': 'Mountain View'
 });
 
 // database.ref()
